@@ -83,19 +83,6 @@ namespace DotNetUtilityLibrary.Cryptography
 			return GetInternalDecryptedStream().ToArray();
 		}
 
-		public MemoryStream GetDecryptedStream()
-		{
-			MemoryStream memoryStream = new MemoryStream();
-			using (CryptoStream cryptoStream = new CryptoStream(
-				mEncryptedDataStream, mTransform, CryptoStreamMode.Read))
-			{
-				StreamHelper.CopyStream(cryptoStream, memoryStream);
-				MemoryStream result = new MemoryStream();
-				StreamHelper.CopyStream(memoryStream, result);
-				return result;
-			}
-		}
-
 		#endregion Exposed Methods
 		
 		#region Private Methods

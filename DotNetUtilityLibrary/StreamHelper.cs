@@ -19,10 +19,6 @@ namespace DotNetUtilityLibrary
 				output.Write(buffer, 0, read);
 			}
 			output.Flush();
-			if (input.CanSeek)
-				input.Seek(0, SeekOrigin.Begin);
-			if (output.CanSeek)
-				output.Seek(0, SeekOrigin.Begin);
 		}
 	}
 }

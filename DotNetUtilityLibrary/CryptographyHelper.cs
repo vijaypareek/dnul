@@ -14,58 +14,40 @@ namespace DotNetUtilityLibrary
 	{
 		#region Symmetric Encryption
 
-		public static string SymmetricEncrypt(SymmetricAlgorithm algorithm,
-			string data, byte[] key, byte[] iv)
+		public static string SymmetricEncrypt<T>(string data, byte[] key,
+			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
 			if (data == null) throw new ArgumentNullException("data");
 			if (key == null) throw new ArgumentNullException("key");
 			if (iv == null) throw new ArgumentNullException("iv");
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricEncryptor encryptor = 
 				new SymmetricEncryptor(algorithm, data, key, iv);
 			return encryptor.GetEncryptedString();
 		}
 
-		public static byte[] SymmetricEncrypt(SymmetricAlgorithm algorithm,
-			byte[] data, byte[] key, byte[] iv)
+		public static byte[] SymmetricEncrypt<T>(byte[] data, byte[] key,
+			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
 			if (data == null) throw new ArgumentNullException("data");
 			if (key == null) throw new ArgumentNullException("key");
 			if (iv == null) throw new ArgumentNullException("iv");
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricEncryptor encryptor =
 				new SymmetricEncryptor(algorithm, data, key, iv);
 			return encryptor.GetEncryptedBytes();
-		}
-
-		public static MemoryStream SymmetricEncrypt(SymmetricAlgorithm algorithm,
-			MemoryStream data, byte[] key, byte[] iv)
-		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
-			if (data == null) throw new ArgumentNullException("data");
-			if (key == null) throw new ArgumentNullException("key");
-			if (iv == null) throw new ArgumentNullException("iv");
-			SymmetricEncryptor encryptor =
-				new SymmetricEncryptor(algorithm, data, key, iv);
-			return encryptor.GetEncryptedStream();
 		}
 
 		#region Encrypt Abbreviated Calls
 
 		public static byte[] SymmetricEncrypt(byte[] data, byte[] key, byte[] iv)
 		{
-			return SymmetricEncrypt(new RijndaelManaged(), data, key, iv);
+			return SymmetricEncrypt<RijndaelManaged>(data, key, iv);
 		}
 
 		public static string SymmetricEncrypt(string data, byte[] key, byte[] iv)
 		{
-			return SymmetricEncrypt(new RijndaelManaged(), data, key, iv);
-		}
-
-		public static MemoryStream SymmetricEncrypt(MemoryStream data, byte[] key,
-			byte[] iv)
-		{
-			return SymmetricEncrypt(new RijndaelManaged(), data, key, iv);
+			return SymmetricEncrypt<RijndaelManaged>(data, key, iv);
 		}
 
 		#endregion Encrypt Abbreviated Calls
@@ -74,58 +56,40 @@ namespace DotNetUtilityLibrary
 
 		#region Symmetric Decryption
 
-		public static string SymmetricDecrypt(SymmetricAlgorithm algorithm,
-			string data, byte[] key, byte[] iv)
+		public static string SymmetricDecrypt<T>( string data, byte[] key,
+			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
 			if (data == null) throw new ArgumentNullException("data");
 			if (key == null) throw new ArgumentNullException("key");
 			if (iv == null) throw new ArgumentNullException("iv");
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricDecryptor decryptor = 
 				new SymmetricDecryptor(algorithm, data, key, iv);
 			return decryptor.GetDecryptedString();
 		}
 
-		public static byte[] SymmetricDecrypt(SymmetricAlgorithm algorithm,
-			byte[] data, byte[] key, byte[] iv)
+		public static byte[] SymmetricDecrypt<T>(byte[] data, byte[] key,
+			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
 			if (data == null) throw new ArgumentNullException("data");
 			if (key == null) throw new ArgumentNullException("key");
 			if (iv == null) throw new ArgumentNullException("iv");
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricDecryptor decryptor =
 				new SymmetricDecryptor(algorithm, data, key, iv);
 			return decryptor.GetDecryptedBytes();
-		}
-
-		public static MemoryStream SymmetricDecrypt(SymmetricAlgorithm algorithm,
-			MemoryStream data, byte[] key, byte[] iv)
-		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
-			if (data == null) throw new ArgumentNullException("data");
-			if (key == null) throw new ArgumentNullException("key");
-			if (iv == null) throw new ArgumentNullException("iv");
-			SymmetricDecryptor decryptor =
-				new SymmetricDecryptor(algorithm, data, key, iv);
-			return decryptor.GetDecryptedStream();
 		}
 
 		#region Decrypt Abbreviated Calls
 
 		public static byte[] SymmetricDecrypt(byte[] data, byte[] key, byte[] iv)
 		{
-			return SymmetricDecrypt(new RijndaelManaged(), data, key, iv);
+			return SymmetricDecrypt<RijndaelManaged>(data, key, iv);
 		}
 
 		public static string SymmetricDecrypt(string data, byte[] key, byte[] iv)
 		{
-			return SymmetricDecrypt(new RijndaelManaged(), data, key, iv);
-		}
-
-		public static MemoryStream SymmetricDecrypt(MemoryStream data, byte[] key,
-			byte[] iv)
-		{
-			return SymmetricDecrypt(new RijndaelManaged(), data, key, iv);
+			return SymmetricDecrypt<RijndaelManaged>(data, key, iv);
 		}
 
 		#endregion Decrypt Abbreviated Calls
