@@ -96,6 +96,10 @@ namespace DotNetUtilityLibrary.Cryptography
 			}
 		}
 
+		#endregion Exposed Methods
+		
+		#region Private Methods
+		
 		private MemoryStream GetInternalDecryptedStream()
 		{
 			MemoryStream memoryStream = new MemoryStream();
@@ -107,7 +111,7 @@ namespace DotNetUtilityLibrary.Cryptography
 			}
 		}
 
-		#endregion Exposed Methods
+		#endregion Private Methods
 
 		#region IDisposable
 

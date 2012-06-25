@@ -144,6 +144,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		[ExpectedException(typeof(CryptographicException))]
 		public void AesManaged_stream_badiv()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptStream);
@@ -223,6 +224,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		[ExpectedException(typeof(CryptographicException))]
 		public void RijndaelManaged_stream_badiv()
 		{
 			TestSymmetricEncrypt<RijndaelManaged>(AssignMetadata, SymmetricEncryptStream);
@@ -302,6 +304,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		[ExpectedException(typeof(CryptographicException))]
 		public void DESCryptoServiceProvider_stream_badiv()
 		{
 			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
@@ -381,6 +384,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		[ExpectedException(typeof(CryptographicException))]
 		public void RC2CryptoServiceProvider_stream_badiv()
 		{
 			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
@@ -460,6 +464,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		[ExpectedException(typeof(CryptographicException))]
 		public void TripleDESCryptoServiceProvider_stream_badiv()
 		{
 			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
