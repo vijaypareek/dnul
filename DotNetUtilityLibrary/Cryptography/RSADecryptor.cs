@@ -79,12 +79,16 @@ namespace DotNetUtilityLibrary.Cryptography
 			return GetDecryptedStream().ToArray();
 		}
 
-		public MemoryStream GetDecryptedStream()
+		#endregion Exposed Methods
+
+		#region Private Methods
+
+		private MemoryStream GetDecryptedStream()
 		{
 			return new MemoryStream(mRsa.Decrypt(mRawDataByteArray, false));
 		}
 
-		#endregion Exposed Methods
+		#endregion Private Methods
 
 		#region IDisposable
 

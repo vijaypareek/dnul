@@ -195,10 +195,10 @@ Don’t forget to visit your mother.”
 			mDecodedBytes = CryptographyHelper.SymmetricDecrypt<T>(mEncodedBytes, mKey, mIv);
 		}
 
-
 		#endregion Encryption/Decryption Methods
 
 		#region AssignMetadata Methods
+
 		protected void AssignMetadata()
 		{
 			if (mKey == null)

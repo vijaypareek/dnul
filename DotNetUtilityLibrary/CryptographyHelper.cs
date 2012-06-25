@@ -116,15 +116,6 @@ namespace DotNetUtilityLibrary
 			return encryptor.GetEncryptedBytes();
 		}
 
-		public static MemoryStream AsymmetricEncrypt(
-			RSACryptoServiceProvider rsa, MemoryStream data)
-		{
-			if (rsa == null) throw new ArgumentNullException("rsa");
-			if (data == null) throw new ArgumentNullException("data");
-			RSAEncryptor encryptor = new RSAEncryptor(rsa, data);
-			return encryptor.GetEncryptedStream();
-		}
-
 		#region AsymmetricEncrypt Alternate Calls
 
 		public static string AsymmetricEncrypt(X509Certificate2 cert, string data)
@@ -134,13 +125,6 @@ namespace DotNetUtilityLibrary
 		}
 
 		public static byte[] AsymmetricEncrypt(X509Certificate2 cert, byte[] data)
-		{
-			return AsymmetricEncrypt((RSACryptoServiceProvider)cert.PublicKey.Key,
-				data);
-		}
-
-		public static MemoryStream AsymmetricEncrypt(X509Certificate2 cert,
-			MemoryStream data)
 		{
 			return AsymmetricEncrypt((RSACryptoServiceProvider)cert.PublicKey.Key,
 				data);
@@ -170,15 +154,6 @@ namespace DotNetUtilityLibrary
 			return decryptor.GetDecryptedBytes();
 		}
 
-		public static MemoryStream AsymmetricDecrypt(
-			RSACryptoServiceProvider rsa, MemoryStream data)
-		{
-			if (rsa == null) throw new ArgumentNullException("rsa");
-			if (data == null) throw new ArgumentNullException("data");
-			RSADecryptor decryptor = new RSADecryptor(rsa, data);
-			return decryptor.GetDecryptedStream();
-		}
-
 		#region AsymmetricDecrypt Alternate Calls
 
 		public static string AsymmetricDecrypt(X509Certificate2 cert, string data)
@@ -188,13 +163,6 @@ namespace DotNetUtilityLibrary
 		}
 
 		public static byte[] AsymmetricDecrypt(X509Certificate2 cert, byte[] data)
-		{
-			return AsymmetricDecrypt((RSACryptoServiceProvider)cert.PrivateKey,
-				data);
-		}
-
-		public static MemoryStream AsymmetricDecrypt(X509Certificate2 cert,
-			MemoryStream data)
 		{
 			return AsymmetricDecrypt((RSACryptoServiceProvider)cert.PrivateKey,
 				data);
