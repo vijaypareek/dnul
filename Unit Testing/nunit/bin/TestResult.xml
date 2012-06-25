@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\DotNetUtilityLibrary.nunit" total="15" errors="2" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2012-06-25" time="05:39:50">
+  <environment nunit-version="2.6.0.12051" clr-version="2.0.50727.5456" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\nunit\bin" machine-name="TRIRONK-THINK" user="Trironk" user-domain="Trironk-THINK" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Project" name="C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\DotNetUtilityLibrary.nunit" executed="True" result="Failure" success="False" time="0.126" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\bin\Debug\UT_CryptographyHelper.dll" executed="True" result="Failure" success="False" time="0.125" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="UT_CryptographyHelper" executed="True" result="Failure" success="False" time="0.125" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="UT_CryptographyHelper" executed="True" result="Failure" success="False" time="0.125" asserts="0">
+                <results>
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_bytes" executed="True" result="Success" success="True" time="0.031" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_bytes_badiv" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_bytes_badkey" executed="True" result="Success" success="True" time="0.004" asserts="0" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_stream" executed="True" result="Error" success="False" time="0.001" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.Security.Cryptography.CryptographicException : Padding is invalid and cannot be removed.]]></message>
+                      <stack-trace><![CDATA[at System.Security.Cryptography.RijndaelManagedTransform.DecryptData(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount, Byte[]& outputBuffer, Int32 outputOffset, PaddingMode paddingMode, Boolean fLast)
+at System.Security.Cryptography.RijndaelManagedTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+at System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+at System.Security.Cryptography.CryptoStream.Dispose(Boolean disposing)
+at System.IO.Stream.Close()
+at DotNetUtilityLibrary.Cryptography.SymmetricDecryptor.GetDecryptedStream() in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\Cryptography\SymmetricDecryptor.cs:line 95
+at DotNetUtilityLibrary.CryptographyHelper.SymmetricDecrypt(SymmetricAlgorithm algorithm, MemoryStream data, Byte[] key, Byte[] iv) in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\CryptographyHelper.cs:line 110
+at UT_CryptographyHelper.UT_CryptographyHelper.SymmetricDecryptStream() in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\UT_CryptographyHelper.cs:line 261
+at UT_CryptographyHelper.UT_CryptographyHelper.TestSymmetricDecrypt[T](Action assignMetadataMethod, Action decryptionMethod) in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\UT_CryptographyHelper.cs:line 223
+at UT_CryptographyHelper.UT_CryptographyHelper.Aes_stream() in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\UT_CryptographyHelper.cs:line 124
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_stream_badiv" executed="True" result="Error" success="False" time="0.002" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.Security.Cryptography.CryptographicException : Padding is invalid and cannot be removed.]]></message>
+                      <stack-trace><![CDATA[at System.Security.Cryptography.RijndaelManagedTransform.DecryptData(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount, Byte[]& outputBuffer, Int32 outputOffset, PaddingMode paddingMode, Boolean fLast)
+at System.Security.Cryptography.RijndaelManagedTransform.TransformFinalBlock(Byte[] inputBuffer, Int32 inputOffset, Int32 inputCount)
+at System.Security.Cryptography.CryptoStream.FlushFinalBlock()
+at System.Security.Cryptography.CryptoStream.Dispose(Boolean disposing)
+at System.IO.Stream.Close()
+at DotNetUtilityLibrary.Cryptography.SymmetricDecryptor.GetDecryptedStream() in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\Cryptography\SymmetricDecryptor.cs:line 95
+at DotNetUtilityLibrary.CryptographyHelper.SymmetricDecrypt(SymmetricAlgorithm algorithm, MemoryStream data, Byte[] key, Byte[] iv) in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\CryptographyHelper.cs:line 110
+at UT_CryptographyHelper.UT_CryptographyHelper.SymmetricDecryptStream() in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\UT_CryptographyHelper.cs:line 261
+at UT_CryptographyHelper.UT_CryptographyHelper.TestSymmetricDecrypt[T](Action assignMetadataMethod, Action decryptionMethod) in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\UT_CryptographyHelper.cs:line 223
+at UT_CryptographyHelper.UT_CryptographyHelper.Aes_stream_badiv() in C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\UT_CryptographyHelper.cs:line 141
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_stream_badkey" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_string" executed="True" result="Success" success="True" time="0.004" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_string_badiv" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.Aes_string_badkey" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.RijndaelManaged_bytes" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.RijndaelManaged_bytes_badiv" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.RijndaelManaged_bytes_badkey" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.RijndaelManaged_string" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.RijndaelManaged_string_badiv" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="UT_CryptographyHelper.UT_CryptographyHelper.RijndaelManaged_string_badkey" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
