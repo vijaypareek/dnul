@@ -14,22 +14,6 @@ namespace UT_CryptographyHelper
 	public class UT_CryptographyHelper_DESCryptoServiceProvider :
 	UT_CryptographyHelper<DESCryptoServiceProvider>
 	{
-		//[Test]
-		//[ExpectedException(typeof(CryptographicException))]
-		//public override void test_bytes_badkey()
-		//{
-		//    TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes);
-		//    TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptBytes);
-		//    AssertionsBytes_badiv();
-		//}
-		//[Test]
-		//[ExpectedException(typeof(CryptographicException))]
-		//public override void test_bytes_badiv()
-		//{
-		//    TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes);
-		//    TestSymmetricDecrypt(AssignMetadataFalseIV, SymmetricDecryptBytes);
-		//    AssertionsBytes_badiv();
-		//}
 	}
 	public class UT_CryptographyHelper_RC2CryptoServiceProvider :
 	UT_CryptographyHelper<RC2CryptoServiceProvider>
