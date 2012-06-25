@@ -57,18 +57,27 @@ Don’t forget to visit your mother.”
 		[TearDown]
 		public void Teardown()
 		{
-			algorithm.Dispose();
-			mSampleStream.Dispose();
+			if (algorithm != null)
+				algorithm.Dispose();
+			if (mSampleStream != null) 
+				mSampleStream.Dispose();
+			if (mEncodedStream != null) 
+				mEncodedStream.Dispose();
+			if (mDecodedStream != null) 
+				mDecodedStream.Dispose();
+
+			mKey = null;
+			mIv = null;
 		}
 		
 		#endregion Teardown
 
 		#region Tests
 
-		#region Aes
+		#region AesManaged
 
 		[Test]
-		public void Aes_string()
+		public void AesManaged_string()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptString);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadata, SymmetricDecryptString);
@@ -77,7 +86,7 @@ Don’t forget to visit your mother.”
 
 		[Test]
 		[ExpectedException(typeof(CryptographicException))]
-		public void Aes_string_badkey()
+		public void AesManaged_string_badkey()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptString);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadataFalseKey, SymmetricDecryptString);
@@ -85,7 +94,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
-		public void Aes_string_badiv()
+		public void AesManaged_string_badiv()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptString);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadataFalseIV, SymmetricDecryptString);
@@ -93,7 +102,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
-		public void Aes_bytes()
+		public void AesManaged_bytes()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptBytes);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadata, SymmetricDecryptBytes);
@@ -102,7 +111,7 @@ Don’t forget to visit your mother.”
 
 		[Test]
 		[ExpectedException(typeof(CryptographicException))]
-		public void Aes_bytes_badkey()
+		public void AesManaged_bytes_badkey()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptBytes);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadataFalseKey, SymmetricDecryptBytes);
@@ -110,7 +119,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
-		public void Aes_bytes_badiv()
+		public void AesManaged_bytes_badiv()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptBytes);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadataFalseIV, SymmetricDecryptBytes);
@@ -118,7 +127,7 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
-		public void Aes_stream()
+		public void AesManaged_stream()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptStream);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadata, SymmetricDecryptStream);
@@ -127,7 +136,7 @@ Don’t forget to visit your mother.”
 
 		[Test]
 		[ExpectedException(typeof(CryptographicException))]
-		public void Aes_stream_badkey()
+		public void AesManaged_stream_badkey()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptStream);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadataFalseKey, SymmetricDecryptStream);
@@ -135,14 +144,14 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
-		public void Aes_stream_badiv()
+		public void AesManaged_stream_badiv()
 		{
 			TestSymmetricEncrypt<AesManaged>(AssignMetadata, SymmetricEncryptStream);
 			TestSymmetricDecrypt<AesManaged>(AssignMetadataFalseIV, SymmetricDecryptStream);
 			AssertionsStream_badiv();
 		}
 
-		#endregion Aes
+		#endregion AesManaged
 
 		#region Rindjael
 
@@ -196,7 +205,269 @@ Don’t forget to visit your mother.”
 			AssertionsBytes_badiv();
 		}
 
+		[Test]
+		public void RijndaelManaged_stream()
+		{
+			TestSymmetricEncrypt<RijndaelManaged>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<RijndaelManaged>(AssignMetadata, SymmetricDecryptStream);
+			AssertionsStream();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void RijndaelManaged_stream_badkey()
+		{
+			TestSymmetricEncrypt<RijndaelManaged>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<RijndaelManaged>(AssignMetadataFalseKey, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		[Test]
+		public void RijndaelManaged_stream_badiv()
+		{
+			TestSymmetricEncrypt<RijndaelManaged>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<RijndaelManaged>(AssignMetadataFalseIV, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
 		#endregion Rindjael
+
+		#region DESCryptoServiceProvider
+
+		[Test]
+		public void DESCryptoServiceProvider_string()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricDecryptString);
+			AssertionsString();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void DESCryptoServiceProvider_string_badkey()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptString);
+			AssertionsString();
+		}
+
+		[Test]
+		public void DESCryptoServiceProvider_string_badiv()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptString);
+			AssertionsString_badiv();
+		}
+
+		[Test]
+		public void DESCryptoServiceProvider_bytes()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricDecryptBytes);
+			AssertionsBytes();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void DESCryptoServiceProvider_bytes_badkey()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptBytes);
+			AssertionsBytes_badiv();
+		}
+
+		[Test]
+		public void DESCryptoServiceProvider_bytes_badiv()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptBytes);
+			AssertionsBytes_badiv();
+		}
+
+		[Test]
+		public void DESCryptoServiceProvider_stream()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricDecryptStream);
+			AssertionsStream();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void DESCryptoServiceProvider_stream_badkey()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		[Test]
+		public void DESCryptoServiceProvider_stream_badiv()
+		{
+			TestSymmetricEncrypt<DESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<DESCryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		#endregion DESCryptoServiceProvider
+
+		#region RC2CryptoServiceProvider
+
+		[Test]
+		public void RC2CryptoServiceProvider_string()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricDecryptString);
+			AssertionsString();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void RC2CryptoServiceProvider_string_badkey()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptString);
+			AssertionsString();
+		}
+
+		[Test]
+		public void RC2CryptoServiceProvider_string_badiv()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptString);
+			AssertionsString_badiv();
+		}
+
+		[Test]
+		public void RC2CryptoServiceProvider_bytes()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricDecryptBytes);
+			AssertionsBytes();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void RC2CryptoServiceProvider_bytes_badkey()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptBytes);
+			AssertionsBytes_badiv();
+		}
+
+		[Test]
+		public void RC2CryptoServiceProvider_bytes_badiv()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptBytes);
+			AssertionsBytes_badiv();
+		}
+
+		[Test]
+		public void RC2CryptoServiceProvider_stream()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricDecryptStream);
+			AssertionsStream();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void RC2CryptoServiceProvider_stream_badkey()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		[Test]
+		public void RC2CryptoServiceProvider_stream_badiv()
+		{
+			TestSymmetricEncrypt<RC2CryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<RC2CryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		#endregion RC2CryptoServiceProvider
+
+		#region TripleDESCryptoServiceProvider
+
+		[Test]
+		public void TripleDESCryptoServiceProvider_string()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricDecryptString);
+			AssertionsString();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void TripleDESCryptoServiceProvider_string_badkey()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptString);
+			AssertionsString();
+		}
+
+		[Test]
+		public void TripleDESCryptoServiceProvider_string_badiv()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptString);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptString);
+			AssertionsString_badiv();
+		}
+
+		[Test]
+		public void TripleDESCryptoServiceProvider_bytes()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricDecryptBytes);
+			AssertionsBytes();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void TripleDESCryptoServiceProvider_bytes_badkey()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptBytes);
+			AssertionsBytes_badiv();
+		}
+
+		[Test]
+		public void TripleDESCryptoServiceProvider_bytes_badiv()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptBytes);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptBytes);
+			AssertionsBytes_badiv();
+		}
+
+		[Test]
+		public void TripleDESCryptoServiceProvider_stream()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricDecryptStream);
+			AssertionsStream();
+		}
+
+		[Test]
+		[ExpectedException(typeof(CryptographicException))]
+		public void TripleDESCryptoServiceProvider_stream_badkey()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadataFalseKey, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		[Test]
+		public void TripleDESCryptoServiceProvider_stream_badiv()
+		{
+			TestSymmetricEncrypt<TripleDESCryptoServiceProvider>(AssignMetadata, SymmetricEncryptStream);
+			TestSymmetricDecrypt<TripleDESCryptoServiceProvider>(AssignMetadataFalseIV, SymmetricDecryptStream);
+			AssertionsStream_badiv();
+		}
+
+		#endregion TripleDESCryptoServiceProvider
 
 		#endregion Tests
 
@@ -228,8 +499,7 @@ Don’t forget to visit your mother.”
 		private void SymmetricEncryptString()
 		{
 			mEncodedText = CryptographyHelper.SymmetricEncrypt(algorithm,
-				mSampleString,
-				mKey, mIv);
+				mSampleString, mKey, mIv);
 		}
 
 		private void SymmetricEncryptBytes()
@@ -247,7 +517,7 @@ Don’t forget to visit your mother.”
 		private void SymmetricDecryptString()
 		{
 			mDecodedText = CryptographyHelper.SymmetricDecrypt(algorithm, 
-			mEncodedText, mKey, mIv);
+				mEncodedText, mKey, mIv);
 		}
 
 		private void SymmetricDecryptBytes()
@@ -262,6 +532,7 @@ Don’t forget to visit your mother.”
 				mEncodedStream, mKey, mIv);
 		}
 		#endregion Encryption/Decryption Methods
+
 		#region AssignMetadata Methods
 		private void AssignMetadata()
 		{
@@ -283,6 +554,8 @@ Don’t forget to visit your mother.”
 			byte[] temp = new byte[mKey.Length];
 			Array.Copy(mKey, temp, mKey.Length);
 			temp[0]++;
+			temp[6]--;
+			temp[3]+= 5;
 			mKey = temp;
 		}
 
@@ -292,9 +565,12 @@ Don’t forget to visit your mother.”
 			byte[] temp = new byte[mIv.Length];
 			Array.Copy(mKey, temp, mIv.Length);
 			temp[0]++;
+			temp[6]--;
+			temp[3] += 5;
 			mIv = temp;
 		}
 		#endregion AssignMetadata Methods
+
 		#region Assertions
 		private void AssertionsString()
 		{
