@@ -11,7 +11,8 @@ using System.Security.Cryptography;
 namespace UT_CryptographyHelper
 {
 	[TestFixture]
-	public abstract class UT_CryptographyHelper<T> where T : SymmetricAlgorithm
+	public abstract class UT_CryptographyHelper_Symmetric<T>
+		where T : SymmetricAlgorithm
 	{
 		#region Fields
 		
@@ -24,8 +25,6 @@ namespace UT_CryptographyHelper
 		string mDecodedText;
 		byte[] mEncodedBytes;
 		byte[] mDecodedBytes;
-		MemoryStream mEncodedStream;
-		MemoryStream mDecodedStream;
 		byte[] mKey;
 		byte[] mIv;
 
@@ -61,10 +60,6 @@ Don’t forget to visit your mother.”
 				algorithm.Dispose();
 			if (mSampleStream != null) 
 				mSampleStream.Dispose();
-			if (mEncodedStream != null) 
-				mEncodedStream.Dispose();
-			if (mDecodedStream != null) 
-				mDecodedStream.Dispose();
 
 			mKey = null;
 			mIv = null;
@@ -251,12 +246,6 @@ Don’t forget to visit your mother.”
 			Assert.AreEqual(mSampleBytes, mDecodedBytes);
 		}
 
-		protected void AssertionsStream()
-		{
-			Assert.AreNotEqual(mSampleStream, mEncodedStream);
-			Assert.AreEqual(mSampleStream, mDecodedStream);
-		}
-
 		protected void AssertionsString_badiv()
 		{
 			Assert.AreNotEqual(mSampleString, mEncodedText);
@@ -269,14 +258,30 @@ Don’t forget to visit your mother.”
 			Assert.AreNotEqual(mSampleBytes, mDecodedBytes);
 		}
 
-		protected void AssertionsStream_badiv()
-		{
-			Assert.AreNotEqual(mSampleStream, mEncodedStream);
-			Assert.AreNotEqual(mSampleStream, mDecodedStream);
-		}
-
 		#endregion Assertions
 
 		#endregion Private Methods
 	}
+
+	#region Implementations
+	
+	public class UT_CryptographyHelper_Symmetric_AesManaged :
+	UT_CryptographyHelper_Symmetric<AesManaged> { }
+
+	public class UT_CryptographyHelper_Symmetric_DESCryptoServiceProvider :
+	UT_CryptographyHelper_Symmetric<DESCryptoServiceProvider> { }
+
+	public class UT_CryptographyHelper_Symmetric_AesCryptoServiceProvider :
+		UT_CryptographyHelper_Symmetric<AesCryptoServiceProvider> { }
+	
+	public class UT_CryptographyHelper_Symmetric_RC2CryptoServiceProvider :
+	UT_CryptographyHelper_Symmetric<RC2CryptoServiceProvider> { }
+	
+	public class UT_CryptographyHelper_Symmetric_RijndaelManaged :
+	UT_CryptographyHelper_Symmetric<RijndaelManaged> { }
+
+	public class UT_CryptographyHelper_Symmetric_TripleDESCryptoServiceProvider :
+	UT_CryptographyHelper_Symmetric<TripleDESCryptoServiceProvider> { }
+	
+	#endregion Implementations
 }

@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace DotNetUtilityLibrary.Cryptography
 {
-	public class RSADecryptor : IDisposable
+	public class AsymmetricDecryptor : IDisposable
 	{
 		#region Properties
 
@@ -32,36 +32,36 @@ namespace DotNetUtilityLibrary.Cryptography
 
 		#region Constructors
 
-		private RSADecryptor(RSACryptoServiceProvider rsaProvider)
+		private AsymmetricDecryptor(RSACryptoServiceProvider rsaProvider)
 		{
 			mRsa = rsaProvider;
 		}
 
-		public RSADecryptor(RSACryptoServiceProvider rsaProvider, MemoryStream rawData)
+		public AsymmetricDecryptor(RSACryptoServiceProvider rsaProvider, MemoryStream rawData)
 			: this(rsaProvider)
 		{
 			mRawDataStream = rawData;
 		}
 
-		public RSADecryptor(RSACryptoServiceProvider rsaProvider, byte[] rawData)
+		public AsymmetricDecryptor(RSACryptoServiceProvider rsaProvider, byte[] rawData)
 			: this(rsaProvider)
 		{
 			mRawDataStream = new MemoryStream(rawData);
 			_mRawDataByteArray = rawData;
 		}
 
-		public RSADecryptor(RSACryptoServiceProvider rsaProvider, string rawData)
+		public AsymmetricDecryptor(RSACryptoServiceProvider rsaProvider, string rawData)
 			: this(rsaProvider, ConvertHelper.StringToBytes(rawData)) { }
 
-		public RSADecryptor(X509Certificate2 certificate, MemoryStream rawData)
+		public AsymmetricDecryptor(X509Certificate2 certificate, MemoryStream rawData)
 			: this((RSACryptoServiceProvider)certificate.PrivateKey, rawData)
 		{ }
 
-		public RSADecryptor(X509Certificate2 certificate, byte[] rawData)
+		public AsymmetricDecryptor(X509Certificate2 certificate, byte[] rawData)
 			: this((RSACryptoServiceProvider)certificate.PrivateKey, rawData)
 		{ }
 
-		public RSADecryptor(X509Certificate2 certificate, string rawData)
+		public AsymmetricDecryptor(X509Certificate2 certificate, string rawData)
 			: this((RSACryptoServiceProvider)certificate.PrivateKey, rawData)
 		{ }
 
@@ -85,7 +85,7 @@ namespace DotNetUtilityLibrary.Cryptography
 
 		private MemoryStream GetDecryptedStream()
 		{
-			return new MemoryStream(mRsa.Decrypt(mRawDataByteArray, false));
+			return new MemoryStream(mRsa.Decrypt(mRawDataByteArray, true));
 		}
 
 		#endregion Private Methods

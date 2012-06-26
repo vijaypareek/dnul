@@ -8,12 +8,12 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace DotNetUtilityLibrary.Cryptography
 {
-	public class RSAEncryptor : IDisposable
+	public class AsymmetricEncryptor : IDisposable
 	{
 		#region Properties
 
 		private MemoryStream mRawDataStream;
-		private RSACryptoServiceProvider mRsa;
+		private RSACryptoServiceProvider mProvider;
 
 		private byte[] _mRawDataByteArray;
 		private byte[] mRawDataByteArray
@@ -32,36 +32,36 @@ namespace DotNetUtilityLibrary.Cryptography
 
 		#region Constructors
 
-		private RSAEncryptor(RSACryptoServiceProvider rsaProvider)
+		private AsymmetricEncryptor(RSACryptoServiceProvider provider)
 		{
-			mRsa = rsaProvider;
+			mProvider = provider;
 		}
 
-		public RSAEncryptor(RSACryptoServiceProvider rsaProvider, MemoryStream rawData)
-			: this(rsaProvider)
+		public AsymmetricEncryptor(RSACryptoServiceProvider provider, MemoryStream rawData)
+			: this(provider)
 		{
 			mRawDataStream = rawData;
 		}
 
-		public RSAEncryptor(RSACryptoServiceProvider rsaProvider, byte[] rawData)
-			: this(rsaProvider)
+		public AsymmetricEncryptor(RSACryptoServiceProvider provider, byte[] rawData)
+			: this(provider)
 		{
 			mRawDataStream = new MemoryStream(rawData);
 			_mRawDataByteArray = rawData;
 		}
 
-		public RSAEncryptor(RSACryptoServiceProvider rsaProvider, string rawData)
-			: this(rsaProvider, ConvertHelper.StringToBytes(rawData)) { }
+		public AsymmetricEncryptor(RSACryptoServiceProvider provider, string rawData)
+			: this(provider, ConvertHelper.StringToBytes(rawData)) { }
 
-		public RSAEncryptor(X509Certificate2 certificate, MemoryStream rawData)
+		public AsymmetricEncryptor(X509Certificate2 certificate, MemoryStream rawData)
 			: this((RSACryptoServiceProvider)certificate.PublicKey.Key, rawData)
 		{ }
 
-		public RSAEncryptor(X509Certificate2 certificate, byte[] rawData)
+		public AsymmetricEncryptor(X509Certificate2 certificate, byte[] rawData)
 			: this((RSACryptoServiceProvider)certificate.PublicKey.Key, rawData)
 		{ }
 
-		public RSAEncryptor(X509Certificate2 certificate, string rawData)
+		public AsymmetricEncryptor(X509Certificate2 certificate, string rawData)
 			: this((RSACryptoServiceProvider)certificate.PublicKey.Key, rawData)
 		{ }
 
@@ -83,10 +83,10 @@ namespace DotNetUtilityLibrary.Cryptography
 
 		#region Private Methods
 		
-		public MemoryStream GetEncryptedStream()
+		private MemoryStream GetEncryptedStream()
 		{
-			return new MemoryStream(mRsa.Encrypt(mRawDataByteArray, false));
-		}
+			return new MemoryStream(mProvider.Encrypt(mRawDataByteArray, true));
+		} 
 
 		#endregion Private Methods
 
@@ -96,8 +96,8 @@ namespace DotNetUtilityLibrary.Cryptography
 		{
 			if (mRawDataStream != null)
 				mRawDataStream.Dispose();
-			if (mRsa != null)
-				mRsa.Dispose();
+			if (mProvider != null)
+				mProvider.Dispose();
 		}
 
 		#endregion IDisposable

@@ -53,8 +53,8 @@
     <Compile Include="CommandPromptHelper.cs" />
     <Compile Include="ConvertHelper.cs" />
     <Compile Include="CryptographyHelper.cs" />
-    <Compile Include="Cryptography\RSADecryptor.cs" />
-    <Compile Include="Cryptography\RSAEncryptor.cs" />
+    <Compile Include="Cryptography\AsymmetricDecryptor.cs" />
+    <Compile Include="Cryptography\AsymmetricEncryptor.cs" />
     <Compile Include="Cryptography\SymmetricDecryptor.cs" />
     <Compile Include="Cryptography\SymmetricEncryptor.cs" />
     <Compile Include="LiveLogger.cs" />

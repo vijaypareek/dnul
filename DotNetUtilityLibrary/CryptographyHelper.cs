@@ -98,21 +98,21 @@ namespace DotNetUtilityLibrary
 
 		#region Asymmetric Encryption
 
-		public static string AsymmetricEncrypt(
-			RSACryptoServiceProvider rsa, string data)
+		public static string AsymmetricEncrypt(RSACryptoServiceProvider rsa,
+			string data)
 		{
 			if (rsa == null) throw new ArgumentNullException("rsa");
 			if (data == null) throw new ArgumentNullException("data");
-			RSAEncryptor encryptor = new RSAEncryptor(rsa, data);
+			AsymmetricEncryptor encryptor = new AsymmetricEncryptor(rsa, data);
 			return encryptor.GetEncryptedString();
 		}
 
-		public static byte[] AsymmetricEncrypt(
-			RSACryptoServiceProvider rsa, byte[] data)
+		public static byte[] AsymmetricEncrypt(RSACryptoServiceProvider rsa,
+			byte[] data)
 		{
 			if (rsa == null) throw new ArgumentNullException("rsa");
 			if (data == null) throw new ArgumentNullException("data");
-			RSAEncryptor encryptor = new RSAEncryptor(rsa, data);
+			AsymmetricEncryptor encryptor = new AsymmetricEncryptor(rsa, data);
 			return encryptor.GetEncryptedBytes();
 		}
 
@@ -141,7 +141,7 @@ namespace DotNetUtilityLibrary
 		{
 			if (rsa == null) throw new ArgumentNullException("rsa");
 			if (data == null) throw new ArgumentNullException("data");
-			RSADecryptor decryptor = new RSADecryptor(rsa, data);
+			AsymmetricDecryptor decryptor = new AsymmetricDecryptor(rsa, data);
 			return decryptor.GetDecryptedString();
 		}
 
@@ -150,7 +150,7 @@ namespace DotNetUtilityLibrary
 		{
 			if (rsa == null) throw new ArgumentNullException("rsa");
 			if (data == null) throw new ArgumentNullException("data");
-			RSADecryptor decryptor = new RSADecryptor(rsa, data);
+			AsymmetricDecryptor decryptor = new AsymmetricDecryptor(rsa, data);
 			return decryptor.GetDecryptedBytes();
 		}
 

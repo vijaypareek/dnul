@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UT_CryptographyHelper_Template.cs" />
+    <Compile Include="UT_CryptographyHelper_Asymmetric.cs" />
+    <Compile Include="UT_CryptographyHelper_Symmetric.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UT_CryptographyHelper_Implementations.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DotNetUtilityLibrary\DotNetUtilityLibrary.csproj">
