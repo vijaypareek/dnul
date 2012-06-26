@@ -84,7 +84,7 @@ Don’t forget to visit your mother.”
 			{
 				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptString);
 				TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptString);
-				AssertionsString();
+				AssertionsString_fail();
 			}
 			catch (CryptographicException)
 			{
@@ -99,7 +99,7 @@ Don’t forget to visit your mother.”
 			{
 				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptString);
 				TestSymmetricDecrypt(AssignMetadataFalseIV, SymmetricDecryptString);
-				AssertionsString_badiv();
+				AssertionsString_fail();
 			}
 			catch (CryptographicException)
 			{
@@ -122,7 +122,7 @@ Don’t forget to visit your mother.”
 			{
 				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes);
 				TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptBytes);
-				AssertionsBytes_badiv();
+				AssertionsBytes_fail();
 			}
 			catch (CryptographicException)
 			{
@@ -137,7 +137,7 @@ Don’t forget to visit your mother.”
 			{
 				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes);
 				TestSymmetricDecrypt(AssignMetadataFalseIV, SymmetricDecryptBytes);
-				AssertionsBytes_badiv();
+				AssertionsBytes_fail();
 			}
 			catch (CryptographicException)
 			{
@@ -246,13 +246,13 @@ Don’t forget to visit your mother.”
 			Assert.AreEqual(mSampleBytes, mDecodedBytes);
 		}
 
-		protected void AssertionsString_badiv()
+		protected void AssertionsString_fail()
 		{
 			Assert.AreNotEqual(mSampleString, mEncodedText);
 			Assert.AreNotEqual(mSampleString, mDecodedText);
 		}
 
-		protected void AssertionsBytes_badiv()
+		protected void AssertionsBytes_fail()
 		{
 			Assert.AreNotEqual(mSampleBytes, mEncodedBytes);
 			Assert.AreNotEqual(mSampleBytes, mDecodedBytes);
