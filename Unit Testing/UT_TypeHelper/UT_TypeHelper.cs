@@ -16,6 +16,7 @@ namespace UT_TypeHelper
 		{
 			Assert.AreEqual(TypeHelper.GetFriendlyName(typeof(string)), "String");
 			Assert.AreEqual(TypeHelper.GetFriendlyName<string>(), "String");
+			Assert.AreEqual(TypeHelper.GetTypeFriendlyName("some string"), "String");
 		}
 	}
 }

@@ -18,5 +18,12 @@ namespace UT_TypeWrapper
 			Assert.AreEqual(typeWrapper.Item, "hello");
 			Assert.AreEqual(typeWrapper.DisplayName, "hello");
 		}
+		[Test]
+		public void test2()
+		{
+			GenericWrapper<string> typeWrapper = new GenericWrapper<string>("hello", TypeHelper.GetTypeFriendlyName);
+			Assert.AreEqual(typeWrapper.Item, "hello");
+			Assert.AreEqual(typeWrapper.DisplayName, "String");
+		}
 	}
 }
