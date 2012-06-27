@@ -17,19 +17,8 @@ namespace CommandLineScript
 		public const string ivString = "katherin";
 		static void Main(string[] args)
 		{
-			//MemoryStream data = new MemoryStream(
-			//    ConvertHelper.StringToBytes(dataString));
-			//MemoryStream encryptedData = new MemoryStream();
-			//byte[] key = ConvertHelper.StringToBytes(keyString);
-			//byte[] iv = ConvertHelper.StringToBytes(ivString);
-			//byte[] buffer =
-			//    new byte[ConvertHelper.StringToBytes(dataString).Length];
-			//using (SymmetricStreamEncryptor<AesManaged> encryptor =
-			//    new SymmetricStreamEncryptor<AesManaged>(data, key, iv))
-			//{
-			//    encryptor.Read(buffer, 0, buffer.Length);
-			//}
-			//Console.WriteLine(ConvertHelper.BytesToString(buffer));
+			GenericWrapper<string> t = new GenericWrapper<string>("hello");
+			Console.Out.WriteLine(t);
 		}
 	}
 }

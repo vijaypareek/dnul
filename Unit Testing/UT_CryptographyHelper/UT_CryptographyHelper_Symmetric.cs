@@ -18,7 +18,6 @@ namespace UT_CryptographyHelper
 		
 		string mSampleString;
 		byte[] mSampleBytes;
-		MemoryStream mSampleStream;
 
 		SymmetricAlgorithm algorithm;
 		string mEncodedText;
@@ -45,8 +44,6 @@ Don’t forget to visit your mother.”
 			mSampleBytes = Encoding.ASCII.GetBytes(mSampleString);
 			byte[] memoryStreamBuffer = new byte[mSampleBytes.Length];
 			mSampleBytes.CopyTo(memoryStreamBuffer, 0);
-			mSampleStream = new MemoryStream(memoryStreamBuffer, true);
-			mSampleStream.Position = 0;
 		}
 
 		#endregion Setup
@@ -58,8 +55,6 @@ Don’t forget to visit your mother.”
 		{
 			if (algorithm != null)
 				algorithm.Dispose();
-			if (mSampleStream != null) 
-				mSampleStream.Dispose();
 
 			mKey = null;
 			mIv = null;
@@ -78,12 +73,35 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		public virtual void test_string_abbreviated()
+		{
+			TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptString_Abbreviated1);
+			TestSymmetricDecrypt(AssignMetadata, SymmetricDecryptString_Abbreviated1);
+			AssertionsString();
+		}
+
+		[Test]
 		public virtual void test_string_badkey()
 		{
 			try
 			{
 				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptString);
 				TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptString);
+				AssertionsString_fail();
+			}
+			catch (CryptographicException)
+			{
+
+			}
+		}
+
+		[Test]
+		public virtual void test_string_badkey_abbreviated()
+		{
+			try
+			{
+				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptString_Abbreviated1);
+				TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptString_Abbreviated1);
 				AssertionsString_fail();
 			}
 			catch (CryptographicException)
@@ -108,10 +126,33 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		public virtual void test_string_badiv_abbreviated()
+		{
+			try
+			{
+				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptString_Abbreviated1);
+				TestSymmetricDecrypt(AssignMetadataFalseIV, SymmetricDecryptString_Abbreviated1);
+				AssertionsString_fail();
+			}
+			catch (CryptographicException)
+			{
+
+			}
+		}
+
+		[Test]
 		public virtual void test_bytes()
 		{
 			TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes);
 			TestSymmetricDecrypt(AssignMetadata, SymmetricDecryptBytes);
+			AssertionsBytes();
+		}
+
+		[Test]
+		public virtual void test_bytes_abbreviated()
+		{
+			TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes_Abbreviated1);
+			TestSymmetricDecrypt(AssignMetadata, SymmetricDecryptBytes_Abbreviated1);
 			AssertionsBytes();
 		}
 
@@ -131,12 +172,42 @@ Don’t forget to visit your mother.”
 		}
 
 		[Test]
+		public virtual void test_bytes_badkey_abbreviated()
+		{
+			try
+			{
+				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes_Abbreviated1);
+				TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptBytes_Abbreviated1);
+				AssertionsBytes_fail();
+			}
+			catch (CryptographicException)
+			{
+
+			}
+		}
+
+		[Test]
 		public virtual void test_bytes_badiv()
 		{
 			try
 			{
 				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes);
 				TestSymmetricDecrypt(AssignMetadataFalseIV, SymmetricDecryptBytes);
+				AssertionsBytes_fail();
+			}
+			catch (CryptographicException)
+			{
+
+			}
+		}
+
+		[Test]
+		public virtual void test_bytes_badiv_abbreviated()
+		{
+			try
+			{
+				TestSymmetricEncrypt(AssignMetadata, SymmetricEncryptBytes_Abbreviated1);
+				TestSymmetricDecrypt(AssignMetadataFalseKey, SymmetricDecryptBytes_Abbreviated1);
 				AssertionsBytes_fail();
 			}
 			catch (CryptographicException)
@@ -175,9 +246,25 @@ Don’t forget to visit your mother.”
 			mEncodedText = CryptographyHelper.SymmetricEncrypt<T>(mSampleString, mKey, mIv);
 		}
 
+		protected void SymmetricEncryptString_Abbreviated1()
+		{
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
+			algorithm.Key = mKey;
+			algorithm.IV = mIv;
+			mEncodedText = CryptographyHelper.SymmetricEncrypt(algorithm, mSampleString);
+		}
+
 		protected void SymmetricEncryptBytes()
 		{
 			mEncodedBytes = CryptographyHelper.SymmetricEncrypt<T>(mSampleBytes, mKey, mIv);
+		}
+
+		protected void SymmetricEncryptBytes_Abbreviated1()
+		{
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
+			algorithm.Key = mKey;
+			algorithm.IV = mIv;
+			mEncodedBytes = CryptographyHelper.SymmetricEncrypt(algorithm, mSampleBytes);
 		}
 
 		protected void SymmetricDecryptString()
@@ -185,9 +272,25 @@ Don’t forget to visit your mother.”
 			mDecodedText = CryptographyHelper.SymmetricDecrypt<T>(mEncodedText, mKey, mIv);
 		}
 
+		protected void SymmetricDecryptString_Abbreviated1()
+		{
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
+			algorithm.Key = mKey;
+			algorithm.IV = mIv;
+			mDecodedText = CryptographyHelper.SymmetricDecrypt(algorithm, mEncodedText);
+		}
+
 		protected void SymmetricDecryptBytes()
 		{
 			mDecodedBytes = CryptographyHelper.SymmetricDecrypt<T>(mEncodedBytes, mKey, mIv);
+		}
+
+		protected void SymmetricDecryptBytes_Abbreviated1()
+		{
+			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
+			algorithm.Key = mKey;
+			algorithm.IV = mIv;
+			mDecodedBytes = CryptographyHelper.SymmetricDecrypt(algorithm, mEncodedBytes);
 		}
 
 		#endregion Encryption/Decryption Methods

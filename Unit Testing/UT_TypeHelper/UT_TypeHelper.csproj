@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DFE01CEF-6A8B-45B3-9B23-68115CBD4E64}</ProjectGuid>
+    <ProjectGuid>{6F3825C0-A001-4AC6-ACFA-45503D337ABC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DotNetUtilityLibrary</RootNamespace>
-    <AssemblyName>DotNetUtilityLibrary</AssemblyName>
+    <RootNamespace>UT_TypeHelper</RootNamespace>
+    <AssemblyName>UT_TypeHelper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -25,16 +25,17 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\bin\Debug\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,31 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundWorkerHelper.cs" />
-    <Compile Include="LiveLogger\Channel.cs" />
-    <Compile Include="LiveLogger\ChannelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LiveLogger\ChannelForm.designer.cs">
-      <DependentUpon>ChannelForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CommandPromptHelper.cs" />
-    <Compile Include="ConvertHelper.cs" />
-    <Compile Include="CryptographyHelper.cs" />
-    <Compile Include="Cryptography\AsymmetricDecryptor.cs" />
-    <Compile Include="Cryptography\AsymmetricEncryptor.cs" />
-    <Compile Include="Cryptography\SymmetricDecryptor.cs" />
-    <Compile Include="Cryptography\SymmetricEncryptor.cs" />
-    <Compile Include="LiveLogger.cs" />
+    <Compile Include="UT_TypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StreamHelper.cs" />
-    <Compile Include="GenericWrapper.cs" />
-    <Compile Include="TypeHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LiveLogger\ChannelForm.resx">
-      <DependentUpon>ChannelForm.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\..\DotNetUtilityLibrary\DotNetUtilityLibrary.csproj">
+      <Project>{DFE01CEF-6A8B-45B3-9B23-68115CBD4E64}</Project>
+      <Name>DotNetUtilityLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

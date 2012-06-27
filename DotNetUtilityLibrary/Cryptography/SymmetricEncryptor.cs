@@ -65,9 +65,18 @@ namespace DotNetUtilityLibrary.Cryptography
 			string rawData,
 			byte[] key,
 			byte[] iv)
-			: this(algorithm, ConvertHelper.StringToBytes(rawData), key, iv)
-		{
-		}
+			: this(algorithm, ConvertHelper.StringToBytes(rawData), key, iv) { }
+
+		public SymmetricEncryptor(SymmetricAlgorithm algorithm,
+			byte[] rawData)
+			: this(algorithm, rawData,
+			algorithm.Key, algorithm.IV) { }
+
+		public SymmetricEncryptor(SymmetricAlgorithm algorithm,
+			string rawData)
+			: this(algorithm, ConvertHelper.StringToBytes(rawData),
+			algorithm.Key, algorithm.IV) { }
+
 		
 		#endregion Constructors
 

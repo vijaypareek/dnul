@@ -40,14 +40,34 @@ namespace DotNetUtilityLibrary
 
 		#region Encrypt Abbreviated Calls
 
+		public static string SymmetricEncrypt(SymmetricAlgorithm algorithm,
+			string data)
+		{
+			if (algorithm == null) throw new ArgumentNullException("algorithm");
+			if (data == null) throw new ArgumentNullException("data");
+			SymmetricEncryptor encryptor =
+				new SymmetricEncryptor(algorithm, data);
+			return encryptor.GetEncryptedString();
+		}
+
+		public static byte[] SymmetricEncrypt(SymmetricAlgorithm algorithm,
+			byte[] data)
+		{
+			if (algorithm == null) throw new ArgumentNullException("algorithm");
+			if (data == null) throw new ArgumentNullException("data");
+			SymmetricEncryptor encryptor =
+				new SymmetricEncryptor(algorithm, data);
+			return encryptor.GetEncryptedBytes();
+		}
+
 		public static byte[] SymmetricEncrypt(byte[] data, byte[] key, byte[] iv)
 		{
-			return SymmetricEncrypt<RijndaelManaged>(data, key, iv);
+			return SymmetricEncrypt<AesCryptoServiceProvider>(data, key, iv);
 		}
 
 		public static string SymmetricEncrypt(string data, byte[] key, byte[] iv)
 		{
-			return SymmetricEncrypt<RijndaelManaged>(data, key, iv);
+			return SymmetricEncrypt<AesCryptoServiceProvider>(data, key, iv);
 		}
 
 		#endregion Encrypt Abbreviated Calls
@@ -81,6 +101,26 @@ namespace DotNetUtilityLibrary
 		}
 
 		#region Decrypt Abbreviated Calls
+
+		public static string SymmetricDecrypt(SymmetricAlgorithm algorithm,
+			string data)
+		{
+			if (algorithm == null) throw new ArgumentNullException("algorithm");
+			if (data == null) throw new ArgumentNullException("data");
+			SymmetricDecryptor decryptor =
+				new SymmetricDecryptor(algorithm, data);
+			return decryptor.GetDecryptedString();
+		}
+
+		public static byte[] SymmetricDecrypt(SymmetricAlgorithm algorithm,
+			byte[] data)
+		{
+			if (algorithm == null) throw new ArgumentNullException("algorithm");
+			if (data == null) throw new ArgumentNullException("data");
+			SymmetricDecryptor decryptor =
+				new SymmetricDecryptor(algorithm, data);
+			return decryptor.GetDecryptedBytes();
+		}
 
 		public static byte[] SymmetricDecrypt(byte[] data, byte[] key, byte[] iv)
 		{
