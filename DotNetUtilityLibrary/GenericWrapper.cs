@@ -11,7 +11,11 @@ namespace DotNetUtilityLibrary
 		{
 			get
 			{
-				if (DisplayStringMethod != null)
+				if (DisplayString != null)
+				{
+					return DisplayString;
+				}
+				else if (DisplayStringMethod != null)
 				{
 					return DisplayStringMethod(Item);
 				}
@@ -25,6 +29,7 @@ namespace DotNetUtilityLibrary
 		public T Item { get; private set; }
 
 		public Func<T, string> DisplayStringMethod;
+		public string DisplayString;
 
 		public GenericWrapper(T item)
 		{
@@ -35,6 +40,12 @@ namespace DotNetUtilityLibrary
 			: this(item)
 		{
 			DisplayStringMethod = displayStringMethod;
+		}
+
+		public GenericWrapper(T item, string displayString)
+			: this(item)
+		{
+			DisplayString = displayString;
 		}
 
 	}

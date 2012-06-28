@@ -62,6 +62,7 @@
     <Compile Include="StreamHelper.cs" />
     <Compile Include="GenericWrapper.cs" />
     <Compile Include="TypeHelper.cs" />
+    <Compile Include="XMLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LiveLogger\ChannelForm.resx">

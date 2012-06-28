@@ -17,8 +17,24 @@ namespace CommandLineScript
 		public const string ivString = "katherin";
 		static void Main(string[] args)
 		{
-			GenericWrapper<string> t = new GenericWrapper<string>("hello");
-			Console.Out.WriteLine(t);
+			RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+			rsa.PersistKeyInCsp = false;
+			Console.WriteLine(
+				CryptographyHelper.AsymmetricEncrypt(rsa, "hello world")
+			);
+			Console.WriteLine(
+				CryptographyHelper.AsymmetricEncrypt(rsa, "hello world")
+			);
+			Console.WriteLine(
+				CryptographyHelper.AsymmetricEncrypt(rsa, "hello world")
+			);
+			Console.WriteLine(
+				CryptographyHelper.AsymmetricEncrypt(rsa, "hello world")
+			);
+				Console.WriteLine(
+				CryptographyHelper.AsymmetricEncrypt(rsa, "hello world")
+			);
+				
 		}
 	}
 }
