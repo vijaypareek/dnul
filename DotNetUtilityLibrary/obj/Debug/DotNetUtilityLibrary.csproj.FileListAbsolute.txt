@@ -16,9 +16,7 @@ C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotN
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.pdb
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\bin\Debug\DotNetUtilityLibrary.dll
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\bin\Debug\DotNetUtilityLibrary.pdb
-C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.LiveLogger.ChannelForm.resources
-C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.dll
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.pdb
+C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.csproj.GenerateResource.Cache

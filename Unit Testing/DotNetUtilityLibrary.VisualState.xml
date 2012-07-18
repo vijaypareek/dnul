@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1000]C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\DotNetUtilityLibrary.nunit</TopNode>
-  <SelectedNode>[0-1000]C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\DotNetUtilityLibrary.nunit</SelectedNode>
+  <TopNode>[0-1048]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_RC2CryptoServiceProvider.UT_CryptographyHelper_Symmetric`1.test_bytes_abbreviated</TopNode>
+  <SelectedNode>[0-1093]UT_TypeHelper.UT_TypeHelper.test_string</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1000]C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\DotNetUtilityLibrary.nunit" Expanded="true" />
     <Node UniqueName="[0-1084]C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\bin\Debug\UT_CryptographyHelper.dll" Expanded="true" />
     <Node UniqueName="[0-1085]UT_CryptographyHelper" Expanded="true" />
+    <Node UniqueName="[0-1079]UT_CryptographyHelper.UT_CryptographyHelper_Asymmetric" Expanded="true" />
+    <Node UniqueName="[0-1027]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_AesCryptoServiceProvider" Expanded="true" />
+    <Node UniqueName="[0-1001]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_AesManaged" Expanded="true" />
+    <Node UniqueName="[0-1014]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_DESCryptoServiceProvider" Expanded="true" />
+    <Node UniqueName="[0-1040]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_RC2CryptoServiceProvider" Expanded="true" />
+    <Node UniqueName="[0-1053]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_RijndaelManaged" Expanded="true" />
+    <Node UniqueName="[0-1066]UT_CryptographyHelper.UT_CryptographyHelper_Symmetric_TripleDESCryptoServiceProvider" Expanded="true" />
     <Node UniqueName="[0-1090]C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\bin\Debug\UT_TypeWrapper.dll" Expanded="true" />
     <Node UniqueName="[0-1091]UT_TypeWrapper" Expanded="true" />
+    <Node UniqueName="[0-1086]UT_TypeWrapper.UT_GenericWrapper" Expanded="true" />
     <Node UniqueName="[0-1094]C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\bin\Debug\UT_TypeHelper.dll" Expanded="true" />
     <Node UniqueName="[0-1095]UT_TypeHelper" Expanded="true" />
+    <Node UniqueName="[0-1092]UT_TypeHelper.UT_TypeHelper" Expanded="true" />
   </Nodes>
 </VisualState>
