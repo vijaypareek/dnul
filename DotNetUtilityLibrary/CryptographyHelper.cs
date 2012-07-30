@@ -17,9 +17,7 @@ namespace DotNetUtilityLibrary
 		public static string SymmetricEncrypt<T>(string data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (data == null) throw new ArgumentNullException("data");
-			if (key == null) throw new ArgumentNullException("key");
-			if (iv == null) throw new ArgumentNullException("iv");
+			ValidateParameters(data, key, iv);
 			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricEncryptor encryptor = 
 				new SymmetricEncryptor(algorithm, data, key, iv);
@@ -29,9 +27,7 @@ namespace DotNetUtilityLibrary
 		public static byte[] SymmetricEncrypt<T>(byte[] data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (data == null) throw new ArgumentNullException("data");
-			if (key == null) throw new ArgumentNullException("key");
-			if (iv == null) throw new ArgumentNullException("iv");
+			ValidateParameters(data, key, iv);
 			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricEncryptor encryptor =
 				new SymmetricEncryptor(algorithm, data, key, iv);
@@ -43,8 +39,7 @@ namespace DotNetUtilityLibrary
 		public static string SymmetricEncrypt(SymmetricAlgorithm algorithm,
 			string data)
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
-			if (data == null) throw new ArgumentNullException("data");
+			ValidateParameters(algorithm, data);
 			SymmetricEncryptor encryptor =
 				new SymmetricEncryptor(algorithm, data);
 			return encryptor.GetEncryptedString();
@@ -53,8 +48,7 @@ namespace DotNetUtilityLibrary
 		public static byte[] SymmetricEncrypt(SymmetricAlgorithm algorithm,
 			byte[] data)
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
-			if (data == null) throw new ArgumentNullException("data");
+			ValidateParameters(algorithm, data);
 			SymmetricEncryptor encryptor =
 				new SymmetricEncryptor(algorithm, data);
 			return encryptor.GetEncryptedBytes();
@@ -62,11 +56,13 @@ namespace DotNetUtilityLibrary
 
 		public static byte[] SymmetricEncrypt(byte[] data, byte[] key, byte[] iv)
 		{
+			ValidateParameters(data, key, iv);
 			return SymmetricEncrypt<AesCryptoServiceProvider>(data, key, iv);
 		}
 
 		public static string SymmetricEncrypt(string data, byte[] key, byte[] iv)
 		{
+			ValidateParameters(data, key, iv);
 			return SymmetricEncrypt<AesCryptoServiceProvider>(data, key, iv);
 		}
 
@@ -76,12 +72,10 @@ namespace DotNetUtilityLibrary
 
 		#region Symmetric Decryption
 
-		public static string SymmetricDecrypt<T>( string data, byte[] key,
+		public static string SymmetricDecrypt<T>(string data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (data == null) throw new ArgumentNullException("data");
-			if (key == null) throw new ArgumentNullException("key");
-			if (iv == null) throw new ArgumentNullException("iv");
+			ValidateParameters(data, key, iv);
 			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricDecryptor decryptor = 
 				new SymmetricDecryptor(algorithm, data, key, iv);
@@ -91,9 +85,7 @@ namespace DotNetUtilityLibrary
 		public static byte[] SymmetricDecrypt<T>(byte[] data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
-			if (data == null) throw new ArgumentNullException("data");
-			if (key == null) throw new ArgumentNullException("key");
-			if (iv == null) throw new ArgumentNullException("iv");
+			ValidateParameters(data, key, iv);
 			SymmetricAlgorithm algorithm = Activator.CreateInstance<T>();
 			SymmetricDecryptor decryptor =
 				new SymmetricDecryptor(algorithm, data, key, iv);
@@ -105,8 +97,7 @@ namespace DotNetUtilityLibrary
 		public static string SymmetricDecrypt(SymmetricAlgorithm algorithm,
 			string data)
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
-			if (data == null) throw new ArgumentNullException("data");
+			ValidateParameters(algorithm, data);
 			SymmetricDecryptor decryptor =
 				new SymmetricDecryptor(algorithm, data);
 			return decryptor.GetDecryptedString();
@@ -115,8 +106,7 @@ namespace DotNetUtilityLibrary
 		public static byte[] SymmetricDecrypt(SymmetricAlgorithm algorithm,
 			byte[] data)
 		{
-			if (algorithm == null) throw new ArgumentNullException("algorithm");
-			if (data == null) throw new ArgumentNullException("data");
+			ValidateParameters(algorithm, data);
 			SymmetricDecryptor decryptor =
 				new SymmetricDecryptor(algorithm, data);
 			return decryptor.GetDecryptedBytes();
@@ -124,14 +114,16 @@ namespace DotNetUtilityLibrary
 
 		public static byte[] SymmetricDecrypt(byte[] data, byte[] key, byte[] iv)
 		{
+			ValidateParameters(data, key, iv);
 			return SymmetricDecrypt<RijndaelManaged>(data, key, iv);
 		}
 
 		public static string SymmetricDecrypt(string data, byte[] key, byte[] iv)
 		{
+			ValidateParameters(data, key, iv);
 			return SymmetricDecrypt<RijndaelManaged>(data, key, iv);
 		}
-
+		
 		#endregion Decrypt Abbreviated Calls
 
 		#endregion Symmetric Decryption
@@ -141,8 +133,7 @@ namespace DotNetUtilityLibrary
 		public static string AsymmetricEncrypt(RSACryptoServiceProvider rsa,
 			string data)
 		{
-			if (rsa == null) throw new ArgumentNullException("rsa");
-			if (data == null) throw new ArgumentNullException("data");
+			ValidateParameters(rsa, data);
 			AsymmetricEncryptor encryptor = new AsymmetricEncryptor(rsa, data);
 			return encryptor.GetEncryptedString();
 		}
@@ -150,8 +141,7 @@ namespace DotNetUtilityLibrary
 		public static byte[] AsymmetricEncrypt(RSACryptoServiceProvider rsa,
 			byte[] data)
 		{
-			if (rsa == null) throw new ArgumentNullException("rsa");
-			if (data == null) throw new ArgumentNullException("data");
+			ValidateParameters(rsa, data);
 			AsymmetricEncryptor encryptor = new AsymmetricEncryptor(rsa, data);
 			return encryptor.GetEncryptedBytes();
 		}
@@ -160,12 +150,14 @@ namespace DotNetUtilityLibrary
 
 		public static string AsymmetricEncrypt(X509Certificate2 cert, string data)
 		{
+			ValidateParameters(cert, data);
 			return AsymmetricEncrypt((RSACryptoServiceProvider)cert.PublicKey.Key,
 				data);
 		}
 
 		public static byte[] AsymmetricEncrypt(X509Certificate2 cert, byte[] data)
 		{
+			ValidateParameters(cert, data);
 			return AsymmetricEncrypt((RSACryptoServiceProvider)cert.PublicKey.Key,
 				data);
 		}
@@ -211,5 +203,62 @@ namespace DotNetUtilityLibrary
 		#endregion AsymmetricDecrypt Alternate Calls
 
 		#endregion Asymmetric Decryption
+
+		#region Private Methods
+
+		private static void ValidateParameters(string data, byte[] key, byte[] iv)
+		{
+			if (data == null) throw new ArgumentNullException("data");
+			if (key == null) throw new ArgumentNullException("key");
+			if (iv == null) throw new ArgumentNullException("iv");
+		}
+		private static void ValidateParameters(byte[] data, byte[] key, byte[] iv)
+		{
+			if (data == null) throw new ArgumentNullException("data");
+			if (key == null) throw new ArgumentNullException("key");
+			if (iv == null) throw new ArgumentNullException("iv");
+		}
+
+		private static void ValidateParameters(SymmetricAlgorithm algorithm,
+			string data)
+		{
+			if (algorithm == null) throw new ArgumentNullException("algorithm");
+			if (data == null) throw new ArgumentNullException("data");
+		}
+
+		private static void ValidateParameters(SymmetricAlgorithm algorithm,
+			byte[] data)
+		{
+			if (algorithm == null) throw new ArgumentNullException("algorithm");
+			if (data == null) throw new ArgumentNullException("data");
+		}
+
+		private static void ValidateParameters(RSACryptoServiceProvider rsa,
+			string data)
+		{
+			if (rsa == null) throw new ArgumentNullException("rsa");
+			if (data == null) throw new ArgumentNullException("data");
+		}
+
+		private static void ValidateParameters(RSACryptoServiceProvider rsa,
+			byte[] data)
+		{
+			if (rsa == null) throw new ArgumentNullException("rsa");
+			if (data == null) throw new ArgumentNullException("data");
+		}
+
+		private static void ValidateParameters(X509Certificate2 cert, string data)
+		{
+			if (cert == null) throw new ArgumentNullException("cert");
+			if (data == null) throw new ArgumentNullException("data");
+		}
+
+		private static void ValidateParameters(X509Certificate2 cert, byte[] data)
+		{
+			if (cert == null) throw new ArgumentNullException("cert");
+			if (data == null) throw new ArgumentNullException("data");
+		}
+
+		#endregion Private Methods
 	}
 }

@@ -1,6 +1,5 @@
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\bin\Debug\UT_CryptographyHelper.dll
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\bin\Debug\UT_CryptographyHelper.pdb
-C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\UT_CryptographyHelper.dll
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\UT_CryptographyHelper.pdb
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\bin\Debug\UT_CryptographyHelper.dll
@@ -10,3 +9,4 @@ C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Uni
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\UT_CryptographyHelper.dll
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\UT_CryptographyHelper.pdb
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\UT_CryptographyHelper.csprojResolveAssemblyReference.cache
+C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\Unit Testing\UT_CryptographyHelper\obj\Debug\UT_CryptographyHelper.csprojResolveAssemblyReference.cache
