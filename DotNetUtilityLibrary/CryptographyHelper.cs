@@ -10,10 +10,18 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace DotNetUtilityLibrary
 {
+	/// <summary>
+	/// Wraps symmetric and asymmetric encryption calls, handling the bookkeeping
+	/// and type conversions.
+	/// </summary>
 	public static class CryptographyHelper
 	{
 		#region Symmetric Encryption
 
+		/// <summary>
+		/// Returns an string representation of the input string using the
+		/// provided key, iv, and specified symmetric encryption algorithm.
+		/// </summary>
 		public static string SymmetricEncrypt<T>(string data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
@@ -24,6 +32,10 @@ namespace DotNetUtilityLibrary
 			return encryptor.GetEncryptedString();
 		}
 
+		/// <summary>
+		/// Returns an byte array representation of the byte array using the
+		/// provided key, iv, and specified symmetric encryption algorithm.
+		/// </summary>
 		public static byte[] SymmetricEncrypt<T>(byte[] data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
@@ -72,6 +84,10 @@ namespace DotNetUtilityLibrary
 
 		#region Symmetric Decryption
 
+		/// <summary>
+		/// Returns the original string given the encrypted form and provided key
+		/// and iv, and specified symmetric encrpytion algorithm.
+		/// </summary>
 		public static string SymmetricDecrypt<T>(string data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
@@ -82,6 +98,10 @@ namespace DotNetUtilityLibrary
 			return decryptor.GetDecryptedString();
 		}
 
+		/// <summary>
+		/// Returns the original byte array given the encrypted form and provided
+		/// key and iv, and specified symmetric encrpytion algorithm.
+		/// </summary>
 		public static byte[] SymmetricDecrypt<T>(byte[] data, byte[] key,
 			byte[] iv) where T : SymmetricAlgorithm
 		{
@@ -130,6 +150,10 @@ namespace DotNetUtilityLibrary
 
 		#region Asymmetric Encryption
 
+		/// <summary>
+		/// Returns an encrypted string given an RSACryptoServiceProvider and a
+		/// plaintext string.
+		/// </summary>
 		public static string AsymmetricEncrypt(RSACryptoServiceProvider rsa,
 			string data)
 		{
@@ -138,6 +162,10 @@ namespace DotNetUtilityLibrary
 			return encryptor.GetEncryptedString();
 		}
 
+		/// <summary>
+		/// Returns an encrypted byte array given an RSACryptoServiceProvider and
+		/// an unencrypted byte array.
+		/// </summary>
 		public static byte[] AsymmetricEncrypt(RSACryptoServiceProvider rsa,
 			byte[] data)
 		{

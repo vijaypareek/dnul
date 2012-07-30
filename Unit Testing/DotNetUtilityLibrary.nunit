@@ -4,6 +4,7 @@
     <assembly path="bin\Debug\UT_CryptographyHelper.dll" />
     <assembly path="bin\Debug\UT_TypeWrapper.dll" />
     <assembly path="bin\Debug\UT_TypeHelper.dll" />
+    <assembly path="bin\Debug\UT_ConvertHelper.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto" />
 </NUnitProject>

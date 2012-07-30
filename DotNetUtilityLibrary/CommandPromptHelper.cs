@@ -26,12 +26,47 @@ namespace DotNetUtilityLibrary
 
 		#region Helper Methods
 
+		/// <summary>
+		/// Starts up a command prompt, hooks up event handlers, runs specified
+		/// commands, and closes the command prompt.
+		/// </summary>
+		public static void RunCommands(string currentWorkingDirectory,
+			IEnumerable<string> commands,
+			DataReceivedEventHandler outputDataEventHandler,
+			DataReceivedEventHandler errorDataEventHandler)
+		{
+			Process process = new Process();
+			process.StartInfo = DEFAULT_PROCESS_INFO;
+			process.Start();
+
+			if (outputDataEventHandler != null)
+			{
+				process.OutputDataReceived += outputDataEventHandler;
+				process.BeginOutputReadLine();
+			}
+			if (outputDataEventHandler != null)
+			{
+				process.ErrorDataReceived += errorDataEventHandler;
+				process.BeginErrorReadLine();
+			}
+
+			commands = InsertCommands(currentWorkingDirectory, commands);
+
+			foreach (string command in commands)
+			{
+				process.StandardInput.WriteLine(command);
+			}
+			process.StandardInput.WriteLine("exit" + Environment.NewLine);
+			process.WaitForExit();
+		}
+
 		public static void RunCommands(IEnumerable<string> commands)
 		{
 			RunCommands(Directory.GetCurrentDirectory(), commands, null, null);
 		}
 
-		public static void RunCommands(IEnumerable<string> commands, out string output)
+		public static void RunCommands(IEnumerable<string> commands,
+			out string output)
 		{
 			CommandPromptListener listener = new CommandPromptListener();
 
@@ -83,48 +118,18 @@ namespace DotNetUtilityLibrary
 				dataEventHandler);
 		}
 
-		public static void RunCommands(string currentWorkingDirectory,
-			IEnumerable<string> commands,
-			DataReceivedEventHandler outputDataEventHandler,
-			DataReceivedEventHandler errorDataEventHandler)
-		{
-			Process process = new Process();
-			process.StartInfo = DEFAULT_PROCESS_INFO;
-			process.Start();
-
-			// Hooking up data received event handlers, if necessary
-			if (outputDataEventHandler != null)
-			{
-				process.OutputDataReceived += outputDataEventHandler;
-				process.BeginOutputReadLine();
-			}
-			if (outputDataEventHandler != null)
-			{
-				process.ErrorDataReceived += errorDataEventHandler;
-				process.BeginErrorReadLine();
-			}
-
-			commands = InsertCommands(currentWorkingDirectory, commands);
-
-			foreach (string command in commands)
-			{
-				process.StandardInput.WriteLine(command);
-			}
-			process.StandardInput.WriteLine("exit" + Environment.NewLine);
-			process.WaitForExit();
-		}
-
 		#endregion Helper Methods
 
 		#region Private Methods
 
-		private static List<string> InsertCommands(string currentWorkingDirectory, IEnumerable<string> commands)
+		private static List<string> InsertCommands(string currentWorkingDirectory,
+			IEnumerable<string> commands)
 		{
 			string currentRoot = Path.GetPathRoot(currentWorkingDirectory);
 			List<string> newCommands = new List<string>();
 			foreach (string command in commands)
 			{
-				newCommands.Add(command);
+				newCommands.Add(command); 
 				if (command.StartsWith("cd "))
 				{
 					string path = command.Remove(0, 3);
@@ -157,7 +162,7 @@ namespace DotNetUtilityLibrary
 
 		#region Event Handlers
 		
-		public  void DataReceived_EventHandler(object sender,
+		public void DataReceived_EventHandler(object sender,
 			DataReceivedEventArgs e)
 		{
 			if (e.Data == null)

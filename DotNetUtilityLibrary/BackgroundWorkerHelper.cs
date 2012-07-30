@@ -8,13 +8,15 @@ using System.Threading;
 namespace DotNetUtilityLibrary
 {
 	/// <summary>
-	/// Summary:
-	///		Wraps the BackgroundWorker class, abbreviating calls and handling
-	///	common bookkeeping aspects.
+	/// Wraps the BackgroundWorker class, abbreviating calls and handling common
+	/// bookkeeping aspects.
 	/// </summary>
 	public static class BackgroundWorkerHelper
 	{
-
+		/// <summary>
+		/// Sets up and returns a BackgroundWorker with the appropriate
+		/// parameters.
+		/// </summary>
 		private static BackgroundWorker SetupBackgroundWorker(
 			DoWorkEventHandler doWork,
 			RunWorkerCompletedEventHandler workCompleted,
@@ -68,6 +70,10 @@ namespace DotNetUtilityLibrary
 
 		#endregion SetupBackgroundWorker Abbreviated Calls
 
+		/// <summary>
+		/// Sets up, runs, and returns a BackgroundWorker with the appropriate
+		/// parameters.
+		/// </summary>
 		public static BackgroundWorker RunAsyncWork(DoWorkEventHandler doWork,
 			RunWorkerCompletedEventHandler workCompleted,
 			ProgressChangedEventHandler progressChanged,
@@ -142,6 +148,10 @@ namespace DotNetUtilityLibrary
 
 		#endregion RunAsyncWork Abreviated Calls
 
+		/// <summary>
+		/// Sets up, runs, waits for work to complete, and returns a
+		/// BackgroundWorker with the appropriate parameters.
+		/// </summary>
 		public static BackgroundWorker RunSyncWork(DoWorkEventHandler doWork,
 			RunWorkerCompletedEventHandler workCompleted,
 			ProgressChangedEventHandler progressChanged,
