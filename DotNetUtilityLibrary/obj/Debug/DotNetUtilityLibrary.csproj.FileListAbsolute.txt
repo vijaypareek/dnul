@@ -18,3 +18,4 @@ C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\Dot
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.pdb
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\ DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.csproj.GenerateResource.Cache
 C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.csproj.GenerateResource.Cache
+C:\Users\Trironk\Documents\Visual Studio 2010\Projects\DotNetUtilityLibrary\DotNetUtilityLibrary\obj\Debug\DotNetUtilityLibrary.csprojResolveAssemblyReference.cache

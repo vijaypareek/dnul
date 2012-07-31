@@ -12,21 +12,21 @@ namespace UT_TypeWrapper
 	public class UT_GenericWrapper
 	{
 		[Test]
-		public void test1()
+		public void WrapStringTest()
 		{
 			GenericWrapper<string> typeWrapper = new GenericWrapper<string>("hello");
 			Assert.AreEqual(typeWrapper.Item, "hello");
 			Assert.AreEqual(typeWrapper.DisplayName, "hello");
 		}
 		[Test]
-		public void test2()
+		public void WrapStringTest_GetFriendlyName()
 		{
 			GenericWrapper<string> typeWrapper = new GenericWrapper<string>("hello", TypeHelper.GetTypeFriendlyName);
 			Assert.AreEqual(typeWrapper.Item, "hello");
 			Assert.AreEqual(typeWrapper.DisplayName, "String");
 		}
 		[Test]
-		public void test3()
+		public void WrapStringTest_GetCustomName()
 		{
 			GenericWrapper<string> typeWrapper = new GenericWrapper<string>("hello", "a random name");
 			Assert.AreEqual(typeWrapper.Item, "hello");
